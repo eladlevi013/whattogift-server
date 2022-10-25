@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "What to gift server api",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,14 @@
   "bugs": {
     "url": "https://github.com/eladlevi013/whattogift-server/issues"
   },
-  "homepage": "https://github.com/eladlevi013/whattogift-server#readme"
+  "homepage": "https://github.com/eladlevi013/whattogift-server#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
+    "mongoose": "^6.7.0",
+    "nodemon": "^2.0.20"
+  }
 }
