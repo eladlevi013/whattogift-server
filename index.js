@@ -12,6 +12,9 @@ const mongoUrl = 'mongodb+srv://whattogift-user:whattogift-password@cluster0.3ff
 ///////////////////////////// ROUTES ////////////////////////////
 import accountRoute from './controllers/account.js';
 app.use('/api/account', accountRoute);
+
+import companiesRoute from './controllers/company.js';
+app.use('/api/company', companiesRoute);
 // ------------ END OF ROUTES ----------------------------------
 const PORT = 3001;
 
