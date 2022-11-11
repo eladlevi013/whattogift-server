@@ -19,4 +19,4 @@ const companySchema = new Schema({
     createdAt: { type: Date, default: Date.now },
 })
 
-export default mongoose.model('Account', accountSchema);
+export default mongoose.model('Company', companySchema);
