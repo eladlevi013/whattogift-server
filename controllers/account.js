@@ -3,6 +3,7 @@ import express from 'express';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
+import Auth from './auth.js';
 
 // ROUTER
 const router = express.Router();
@@ -97,27 +98,36 @@ router.post('/login', async(req, res) => {
     // if user exists - check credentails
     Account.findOne({email: email})
     .then(async account => {
-        const isMatch = await bcryptjs.compare(password, account.password);
-        if(isMatch) {
-            const data = {account};
-            const token = await jwt.sign(data, 'cfBwVCfAEY');
-            
-            return res.status(200).json({
-                status: true,
-                message: account,
-                token: token
-            });
-        } else {
-            return res.status(200).json({
+        if(account) {
+            const isMatch = await bcryptjs.compare(password, account.password);
+            if(isMatch) {
+                const data = {account};
+                const token = await jwt.sign(data, 'cfBwVCfAEY');
+                
+                return res.status(200).json({
+                    status: true,
+                    message: account,
+                    token: token
+                });
+            } else {
+                return res.status(200).json({
+                    status: false,
+                    message: 'Username or password not match or account not verified'
+                });
+            }
+        }
+        else 
+        {
+            return res.status(500).json({
                 status: false,
-                message: 'Username or password not match or account not verified'
+                message: "Could not find any user with that username\nError message: " + error
             });
         }
     })
     .catch(error => {
         return res.status(500).json({
             status: false,
-            message: "Could not find any user with that username\nError message: " + error
+            message: error
         });
     })
 })
@@ -183,8 +193,12 @@ router.post('/update_password', async(req, res) => {
     })
 })
 
-router.get('/getOverview', async(req, res) => {
+router.get('/getOverview', Auth, async(req, res) => {
     // TODO
+    return res.status(200).json({
+        
+        message: `Hello ${req.user.firstName}`
+    });
 })
 
 export default router;
