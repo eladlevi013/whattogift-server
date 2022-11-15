@@ -5,7 +5,7 @@ import Auth from './auth.js';
 
 // MODELS
 import Company from '../models/company.js';
- 
+
 router.post('/create_company', Auth, async(req, res) => {
     const user = req.user;
     const company = await Company.find({associatedId: user._id});
@@ -30,7 +30,7 @@ router.post('/create_company', Auth, async(req, res) => {
         _company.save()
         .then(company_created => {
             return res.status(200).json({
-                status: false,
+                status: true,
                 message: company_created
             });
         })
