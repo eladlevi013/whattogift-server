@@ -196,7 +196,6 @@ router.post('/update_password', async(req, res) => {
 router.get('/getOverview', Auth, async(req, res) => {
     // TODO
     return res.status(200).json({
-        
         message: `Hello ${req.user.firstName}`
     });
 })
