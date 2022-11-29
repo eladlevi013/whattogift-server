@@ -15,7 +15,7 @@ app.use('/api/account', accountRoute);
 
 import companiesRoute from './controllers/company.js';
 app.use('/api/company', companiesRoute);
-// ------------ END OF ROUTES ----------------------------------
+// ---------------------- END OF ROUTES ----------------------
 const PORT = 3001;
 
 mongoose.connect(mongoUrl)

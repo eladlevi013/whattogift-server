@@ -6,6 +6,20 @@ import Auth from './auth.js';
 // MODELS
 import Company from '../models/company.js';
 
+router.post('/get_companies', Auth, async(req, res) => {
+    Company.find()
+    .then(companies => {
+        return res.status(200).json({
+            message: companies
+        })
+    })
+    .catch(error => {
+        return res.status(500).json({
+            message: error.message
+        })
+    })
+})
+
 router.post('/create_company', Auth, async(req, res) => {
     const user = req.user;
     const company = await Company.find({associatedId: user._id});
